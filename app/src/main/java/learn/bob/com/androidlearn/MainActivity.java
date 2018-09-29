@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import learn.bob.com.androidlearn.aop.AOPDoubleClickActivity;
+import learn.bob.com.androidlearn.audioWave.AudioWaveActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,5 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void aopDoubleClick(View view) {
         startActivity(new Intent(this, AOPDoubleClickActivity.class));
+    }
+
+    public void audioWave(View view) {
+        startActivity(new Intent(this, AudioWaveActivity.class));
     }
 }

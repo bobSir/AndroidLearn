@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".aop.AOPDoubleClickActivity">
         </activity>
+        <activity android:name=".audioWave.AudioWaveActivity">
+        </activity>
     </application>
 
 </manifest>
