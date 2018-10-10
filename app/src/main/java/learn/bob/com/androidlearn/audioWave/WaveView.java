@@ -6,11 +6,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 
 import java.util.ArrayList;
+
+import learn.bob.com.androidlearn.util.DensityUtil;
 
 /**
  * Created by cly on 18/9/20.
@@ -20,13 +20,14 @@ public class WaveView extends View {
     private Paint mCenLinePaint;
     private Paint mWavePaint;
 
+    private final int RIGHT_GAP = 100;//录音频波右边空出间隙
     private ArrayList<Integer> values = new ArrayList<>();
     private int MAX;
     private int i;
     private int width;
     private int height;
-    private float BASEDIV = 0.5f;
-    private float WAVEWIDTH = 0.5f;
+    private float BASEDIV = 4f;
+    private float WAVEWIDTH = 2f;
     private boolean isDrawing = true;
 
     public WaveView(Context context) {
@@ -44,26 +45,20 @@ public class WaveView extends View {
     }
 
     private void initData() {
-        int width = getScreenWith();
+        int width = DensityUtil.getScreenWith(getContext()) - RIGHT_GAP;
         MAX = (int) (width / (BASEDIV + WAVEWIDTH));
-    }
-
-    private int getScreenWith() {
-        WindowManager wm = (WindowManager) this.getContext()
-                .getSystemService(Context.WINDOW_SERVICE);
-        return wm.getDefaultDisplay().getWidth();
     }
 
     private void initPaint() {
         mCenLinePaint = new Paint();
-        mCenLinePaint.setColor(Color.rgb(39, 199, 175));
+        mCenLinePaint.setColor(Color.parseColor("#D8D8D8"));
         mCenLinePaint.setStrokeWidth(1);
         mCenLinePaint.setAntiAlias(true);
         mCenLinePaint.setFilterBitmap(true);
         mCenLinePaint.setStyle(Paint.Style.FILL);
 
         mWavePaint = new Paint();
-        mWavePaint.setColor(Color.parseColor("#000000"));
+        mWavePaint.setColor(Color.parseColor("#9B9B9B"));
         mWavePaint.setStrokeWidth(WAVEWIDTH);
         mWavePaint.setAntiAlias(true);
         mWavePaint.setDither(true);
@@ -72,16 +67,16 @@ public class WaveView extends View {
     }
 
     public void startWave(int value) {
+        int data = value / 40 + 2;
         isDrawing = true;
         if (i <= MAX - 1) {
-            values.add(value);
+            values.add(data);
             i++;
         } else {
             values.remove(0);
-            values.add(value);
+            values.add(data);
         }
         invalidate();
-
     }
 
     public void stopWave() {
@@ -95,12 +90,11 @@ public class WaveView extends View {
         if (!isDrawing) return;
         width = getMeasuredWidth();
         height = getMeasuredHeight();
-        canvas.drawARGB(255, 239, 239, 239);
+        canvas.drawARGB(255, 255, 255, 255);
         canvas.drawLine(0, height * 0.5f, width, height * 0.5f, mCenLinePaint);
         for (int j = 0; j < values.size(); j++) {
             canvas.drawLine(j * (BASEDIV + WAVEWIDTH), height * 0.5f - values.get(j),
                     j * (BASEDIV + WAVEWIDTH), height * 0.5f + values.get(j), mWavePaint);
-            Log.d("@cly", "x==" + j * (BASEDIV + WAVEWIDTH));
         }
     }
 }

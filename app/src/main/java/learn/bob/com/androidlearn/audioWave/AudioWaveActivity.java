@@ -12,7 +12,6 @@ import learn.bob.com.androidlearn.R;
 
 public class AudioWaveActivity extends AppCompatActivity {
 
-    private WaveStaticView mStaticView;
     private WaveView mWaveView;
     private WaveGroupView mWaveGroupView;
 
@@ -23,7 +22,6 @@ public class AudioWaveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_wave_avtivity);
-        mStaticView = findViewById(R.id.wavesfv);
         mWaveView = findViewById(R.id.wv);
         mWaveGroupView = findViewById(R.id.wave_group);
     }
@@ -33,7 +31,7 @@ public class AudioWaveActivity extends AppCompatActivity {
         for (int i = 0; i < 11230; i++) {
             integers.add(new Random().nextInt(j));
         }
-        mStaticView.setValues(integers);
+        mWaveGroupView.showWave(integers);
     }
 
     public void startView(View view) {
@@ -48,8 +46,6 @@ public class AudioWaveActivity extends AppCompatActivity {
     }
 
     public void testView(View view) {
-//        mHandler.removeCallbacksAndMessages(null);
-//        mWaveView.stopWave();
         mWaveGroupView.stopAudio();
     }
 
@@ -59,6 +55,6 @@ public class AudioWaveActivity extends AppCompatActivity {
             integers.add(new Random().nextInt(j));
         }
         mWaveGroupView.showWave(integers);
-        mWaveGroupView.playAudio();
+        mWaveGroupView.playAudio(10 * 1000);
     }
 }

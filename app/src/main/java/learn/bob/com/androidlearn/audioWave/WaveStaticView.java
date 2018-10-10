@@ -6,11 +6,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 
 import java.util.ArrayList;
+
+import learn.bob.com.androidlearn.util.DensityUtil;
 
 /**
  * Created by cly on 18/9/21.
@@ -20,6 +20,8 @@ public class WaveStaticView extends View {
     private Paint mCenPaint;
     private Paint mWavePaint;
 
+    public final static int SPACE = DensityUtil.dip2px(9);//左右两边间距
+    private int width;
     private float BASEDIV = 0.5f;//间隔 取值范围大于0.5
     private float WAVEWIDTH = 0.5f;
     private int MAX;//最大线数
@@ -39,24 +41,23 @@ public class WaveStaticView extends View {
         initPaint();
     }
 
-    private int getScreenWith() {
-        WindowManager wm = (WindowManager) this.getContext()
-                .getSystemService(Context.WINDOW_SERVICE);
-        return wm.getDefaultDisplay().getWidth();
-    }
-
     private void initData() {
-        MAX = (int) (getScreenWith() / (BASEDIV + WAVEWIDTH));
+        width = DensityUtil.getScreenWith(getContext()) - SPACE * 2;
+        MAX = (int) (width / (BASEDIV + WAVEWIDTH));
     }
 
-    public void setValues(ArrayList<Integer> values) {
+    public void setValues(ArrayList<Integer> integers) {
+        ArrayList<Integer> values = new ArrayList<>();
+        for (int i : integers) {
+            values.add(i / 40 + 2);
+        }
         this.mValues = values;
         int length = values.size();
         if (length > MAX) {
             doMoreValues();
         } else {
-            BASEDIV = getScreenWith() / length - WAVEWIDTH;
-            MAX = (int) (getScreenWith() / (BASEDIV + WAVEWIDTH));
+            BASEDIV = width / length - WAVEWIDTH;
+            MAX = (int) (width / (BASEDIV + WAVEWIDTH));
         }
         invalidate();
     }
@@ -68,21 +69,20 @@ public class WaveStaticView extends View {
 
         ArrayList<Integer> newValues = new ArrayList<>();
         for (int i = 0; i < length; i++) {
-            if (i % temp == 0) {
+            if (i % temp != 0) {
                 newValues.add(mValues.get(i));
             }
             if (newValues.size() == MAX) break;
         }
         mValues.clear();
         mValues.addAll(newValues);
-        BASEDIV = getScreenWith() / mValues.size() - WAVEWIDTH;
-        MAX = (int) (getScreenWith() / (BASEDIV + WAVEWIDTH));
+        BASEDIV = width / mValues.size() - WAVEWIDTH;
+        MAX = (int) (width / (BASEDIV + WAVEWIDTH));
     }
 
     private void initPaint() {
         mCenPaint = new Paint();
-        mCenPaint = new Paint();
-        mCenPaint.setColor(Color.rgb(39, 199, 175));
+        mCenPaint.setColor(Color.parseColor("#D8D8D8"));
         mCenPaint.setStrokeWidth(1);
         mCenPaint.setAntiAlias(true);
         mCenPaint.setFilterBitmap(true);
@@ -100,14 +100,16 @@ public class WaveStaticView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int width = getMeasuredWidth();
         int height = getMeasuredHeight();
-        canvas.drawARGB(255, 239, 239, 239);
-        canvas.drawLine(0, height * 0.5f, width, height * 0.5f, mCenPaint);
+//        canvas.drawARGB(255, 255, 255, 255);
+        canvas.drawLine(SPACE, height * 0.5f, width, height * 0.5f, mCenPaint);
         for (int i = 0; i < mValues.size(); i++) {
-            canvas.drawLine(i * (BASEDIV + WAVEWIDTH), height * 0.5f - mValues.get(i),
-                    i * (BASEDIV + WAVEWIDTH), height * 0.5f + mValues.get(i), mWavePaint);
-            Log.d("@cly", "x==" + i * (BASEDIV + WAVEWIDTH));
+            canvas.drawLine(i * (BASEDIV + WAVEWIDTH) + SPACE, height * 0.5f - mValues.get(i),
+                    i * (BASEDIV + WAVEWIDTH) + SPACE, height * 0.5f + mValues.get(i), mWavePaint);
         }
+    }
+
+    public int getRealWidth() {
+        return (int) ((BASEDIV + WAVEWIDTH) * mValues.size());
     }
 }

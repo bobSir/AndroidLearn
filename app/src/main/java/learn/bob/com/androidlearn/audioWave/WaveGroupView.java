@@ -3,25 +3,27 @@ package learn.bob.com.androidlearn.audioWave;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.WindowManager;
+import android.util.Pair;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
 import learn.bob.com.androidlearn.R;
+import learn.bob.com.androidlearn.util.DensityUtil;
 
 /**
  * Created by cly on 18/9/21.
  */
 
 public class WaveGroupView extends RelativeLayout {
-    private int mWavaSize;//波纹个数
-
     private final float MIN_TIME = 5;
-    private LineView mStartLineView;
-    private LineView mEndLineView;
-    private LineView mPlayLineView;
+    private StartLineView mStartLineView;
+    private EndLineView mEndLineView;
+    private PlayLineView mPlayLineView;
     private WaveStaticView mWaveView;
+    private WaveBacView mWaveBacView;
+    private OnSeekListener mOnSeekListener;
+    private onCropSeekListener mCropSeekListener;
 
     public WaveGroupView(Context context) {
         this(context, null);
@@ -33,19 +35,14 @@ public class WaveGroupView extends RelativeLayout {
 
     public WaveGroupView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView();
     }
 
-    private int getScreenWidth() {
-        WindowManager wm = (WindowManager) this.getContext()
-                .getSystemService(Context.WINDOW_SERVICE);
-        return wm.getDefaultDisplay().getWidth();
+    public void setOnSeekListener(OnSeekListener onSeekListener) {
+        mOnSeekListener = onSeekListener;
     }
 
-    private void initView() {
-        mWaveView = new WaveStaticView(getContext());
-        mWaveView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        this.addView(mWaveView);
+    public void setCropSeekListener(onCropSeekListener cropSeekListener) {
+        mCropSeekListener = cropSeekListener;
     }
 
     @Override
@@ -55,36 +52,87 @@ public class WaveGroupView extends RelativeLayout {
     }
 
     private void initLine() {
+        mWaveView = findViewById(R.id.wv);
         mStartLineView = findViewById(R.id.line_start);
         mPlayLineView = findViewById(R.id.line_play);
         mEndLineView = findViewById(R.id.line_end);
-        mStartLineView.setOnMoveEvent(new LineView.OnMoveEvent() {
+        mWaveBacView = findViewById(R.id.wv_bac);
+        mPlayLineView.setPlayLineTouchListener(new PlayLineView.OnPlayLineTouchListener() {
             @Override
-            public void onMove(int x) {
-                mEndLineView.setStartX(x);
+            public void onDown() {
+                if (mOnSeekListener != null) mOnSeekListener.onDown();
+            }
+
+            @Override
+            public void onUp(double timeScale) {
+                if (mOnSeekListener != null) mOnSeekListener.onUp(timeScale);
             }
         });
-        mEndLineView.setOnMoveEvent(new LineView.OnMoveEvent() {
+        mStartLineView.setOnMoveEvent(new OnMoveEvent() {
             @Override
-            public void onMove(int x) {
+            public void onMove(int x, double scale) {
+                mEndLineView.setStartX(x);
+                mWaveBacView.drawStart(x);
+                if (mCropSeekListener != null) mCropSeekListener.onStartMove(scale);
+            }
+        });
+        mEndLineView.setOnMoveEvent(new OnMoveEvent() {
+            @Override
+            public void onMove(int x, double scale) {
                 mStartLineView.setEndX(x);
+                mWaveBacView.drawEnd(x);
+                if (mCropSeekListener != null) mCropSeekListener.onEndMove(scale);
             }
         });
     }
 
     public void showWave(ArrayList<Integer> integers) {
-        mWavaSize = integers.size();
         mWaveView.setValues(integers);
+        mPlayLineView.setRealWidth(mWaveView.getRealWidth());
+        mStartLineView.setRealWidth(mWaveView.getRealWidth());
+        mEndLineView.setRealWidth(mWaveView.getRealWidth());
+        LayoutParams layoutParams = (LayoutParams) mEndLineView.getLayoutParams();
+        int right = DensityUtil.getScreenWith(getContext()) - mWaveView.getRealWidth() - 2 * WaveStaticView.SPACE;
+        layoutParams.setMargins(0, 0, right, 0);
+        mEndLineView.setLayoutParams(layoutParams);
+        mWaveBacView.setEndRight(mWaveView.getRealWidth() + WaveStaticView.SPACE);
     }
 
-    public void playAudio() {
-        mPlayLineView.setMinDis((int) (MIN_TIME / 10f * getScreenWidth()));
-        mStartLineView.setMinDis((int) (MIN_TIME / 10f * getScreenWidth()));
-        mEndLineView.setMinDis((int) (MIN_TIME / 10f * getScreenWidth()));
-        mPlayLineView.play(10);
+    public void hideCrop() {
+        mStartLineView.setVisibility(GONE);
+        mEndLineView.setVisibility(GONE);
+    }
+
+    /**
+     * @param time 单位ms
+     */
+    public void playAudio(long time) {
+        mPlayLineView.play(time);
     }
 
     public void stopAudio() {
         mPlayLineView.stop();
+    }
+
+    public void playFinish() {
+        mPlayLineView.playFinish();
+    }
+
+    public Pair<Long, Long> getBeginAndEnd(long totalTime) {
+        long beginTime = (long) (mStartLineView.getTimeScale() * totalTime);
+        long endTime = (long) (mEndLineView.getTimeScale() * totalTime);
+        return new Pair<>(beginTime, endTime);
+    }
+
+    public interface OnSeekListener {
+        void onDown();
+
+        void onUp(double timeScale);
+    }
+
+    public interface onCropSeekListener {
+        void onStartMove(double scale);
+
+        void onEndMove(double scale);
     }
 }

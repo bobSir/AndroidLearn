@@ -10,9 +10,10 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.animation.LinearInterpolator;
 
 import learn.bob.com.androidlearn.R;
+import learn.bob.com.androidlearn.util.DensityUtil;
 
 /**
  * Created by cly on 18/9/28.
@@ -25,25 +26,22 @@ public class LineView extends View {
 
     private Paint mLinePaint;
     private Paint mCirclePaint;
+    private Paint mRectPaint;
 
-    private int color;
-    private int lineWidth = 10;
+    private final static int SPACE_DOWN = DensityUtil.dip2px(5);//上下留边5dp
+    private final static int SPACE_LEFT = DensityUtil.dip2px(10);//左右留边
+    private int lineWidth = DensityUtil.dip2px(3);
     private int type;
     private ValueAnimator mPlayAnim;
 
+    private int realWidth;//画布实际绘画宽度
     private float downX;
     public int minDis;//起始线距末尾线最短距离 根据录制最短时间5S计算
-    private static final float RADIUS = 6;
-    public static final int LINE_WIDTH = 10;
+    private static final float RADIUS = DensityUtil.dip2px(2.5f);
     private int startX = 0;//裁剪起始线X
-    private int endX = getScreenWidth();//裁剪末尾线X
+    private int endX;//裁剪末尾线X
     public OnMoveEvent mOnMoveEvent;
-
-    private int getScreenWidth() {
-        WindowManager wm = (WindowManager) this.getContext()
-                .getSystemService(Context.WINDOW_SERVICE);
-        return wm.getDefaultDisplay().getWidth();
-    }
+    public OnPlayLineTouchListener mPlayLineTouchListener;
 
     public LineView(Context context) {
         this(context, null);
@@ -55,12 +53,17 @@ public class LineView extends View {
 
     public LineView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        realWidth = DensityUtil.getScreenWith(context);
         obtainAttributeSet(context, attrs);
         initPaint();
     }
 
     public void setOnMoveEvent(OnMoveEvent onMoveEvent) {
         mOnMoveEvent = onMoveEvent;
+    }
+
+    public void setPlayLineTouchListener(OnPlayLineTouchListener playLineTouchListener) {
+        mPlayLineTouchListener = playLineTouchListener;
     }
 
     private void obtainAttributeSet(Context context, AttributeSet attrs) {
@@ -92,6 +95,13 @@ public class LineView extends View {
                 mLinePaint.setDither(true);
                 mLinePaint.setFilterBitmap(true);
                 mLinePaint.setStyle(Paint.Style.STROKE);
+
+                mRectPaint = new Paint();
+                mRectPaint.setColor(Color.BLACK);
+                mRectPaint.setAntiAlias(true);
+                mRectPaint.setDither(true);
+                mRectPaint.setFilterBitmap(true);
+                mRectPaint.setStyle(Paint.Style.STROKE);
                 break;
         }
     }
@@ -102,15 +112,20 @@ public class LineView extends View {
         if (mLinePaint == null) return;
         switch (type) {
             case START:
-                canvas.drawCircle(0, 0, RADIUS, mCirclePaint);
-                canvas.drawLine(0, 0, 0, getMeasuredHeight(), mLinePaint);
+                canvas.drawCircle(SPACE_LEFT, RADIUS, RADIUS, mCirclePaint);
+                canvas.drawLine(SPACE_LEFT, 0, SPACE_LEFT,
+                        getMeasuredHeight() - SPACE_DOWN, mLinePaint);
                 break;
             case END:
-                canvas.drawLine(0, 0, 0, getMeasuredHeight(), mLinePaint);
-                canvas.drawCircle(0, 0, RADIUS, mCirclePaint);
+                canvas.drawLine(SPACE_LEFT, SPACE_DOWN, SPACE_LEFT, getMeasuredHeight(), mLinePaint);
+                canvas.drawCircle(SPACE_LEFT, SPACE_DOWN + getMeasuredHeight() + RADIUS,
+                        RADIUS, mCirclePaint);
                 break;
             case PLAY:
-                canvas.drawLine(0, 0, 0, getMeasuredHeight(), mLinePaint);
+                canvas.drawRect(0, SPACE_DOWN, 2 * SPACE_LEFT,
+                        getMeasuredHeight() + SPACE_DOWN, mRectPaint);
+                canvas.drawLine(SPACE_LEFT, SPACE_DOWN, SPACE_LEFT,
+                        getMeasuredHeight() + SPACE_DOWN, mLinePaint);
                 break;
         }
     }
@@ -121,6 +136,9 @@ public class LineView extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 downX = event.getX();
+                if (type == PLAY) {
+                    stop();
+                }
                 break;
             case MotionEvent.ACTION_MOVE:
                 float dX = event.getX() - downX;
@@ -129,13 +147,13 @@ public class LineView extends View {
                     int r = (int) (getRight() + dX);
                     if (type == START) {
                         if (r + minDis > endX) {
-                            l = endX - LINE_WIDTH - minDis - LINE_WIDTH;
-                            r = l + LINE_WIDTH;
+                            l = endX - lineWidth - minDis - lineWidth;
+                            r = l + lineWidth;
                         }
                     } else if (type == END) {
                         if (l - minDis < startX) {
                             l = startX + minDis;
-                            r = l + LINE_WIDTH;
+                            r = l + lineWidth;
                         }
                     }
                     this.layout(l, getTop(), r, getBottom());
@@ -143,9 +161,18 @@ public class LineView extends View {
                         mOnMoveEvent.onMove((int) getX());
                     }
                 }
+            case MotionEvent.ACTION_UP:
+                if (mPlayLineTouchListener != null) {
+                    mPlayLineTouchListener.onUp(getTimeScale());
+                }
                 break;
         }
         return true;
+    }
+
+    public void setRealWidth(int realWidth) {
+        this.realWidth = realWidth;
+        this.endX = realWidth;
     }
 
     public void setMinDis(int minDis) {
@@ -165,8 +192,12 @@ public class LineView extends View {
      *
      * @return
      */
-    public double getScale() {
-        return getX() / getScreenWidth();
+    public double getTimeScale() {
+        return getX() / realWidth;
+    }
+
+    public void setCurrentPosition(long time) {
+
     }
 
     /**
@@ -174,27 +205,36 @@ public class LineView extends View {
      *
      * @param time 音频时长 单位秒
      */
-    public void play(int time) {
+    public void play(long time) {
         if (type != PLAY) return;
-        mPlayAnim = ValueAnimator.ofInt((int) this.getX(), getScreenWidth());
-        mPlayAnim.setDuration(time * 1000);
+        mPlayAnim = ValueAnimator.ofInt((int) this.getX(), realWidth);
+        mPlayAnim.setDuration(time);
+        mPlayAnim.setInterpolator(new LinearInterpolator());
         mPlayAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int value = (int) animation.getAnimatedValue();
-                LineView.this.layout(value, 0, value + LINE_WIDTH, getMeasuredHeight());
+                LineView.this.layout(value, 0, value + lineWidth, getMeasuredHeight());
             }
         });
         mPlayAnim.start();
     }
 
     public void stop() {
-        if (type != PLAY) return;
+        if (type != PLAY || mPlayAnim == null) return;
         mPlayAnim.cancel();
         this.clearAnimation();
     }
 
+    public void playFinish() {
+        layout(0, 0, lineWidth, getMeasuredHeight());
+    }
+
     public interface OnMoveEvent {
         void onMove(int x);
+    }
+
+    public interface OnPlayLineTouchListener {
+        void onUp(double timeScale);
     }
 }

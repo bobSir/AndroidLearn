@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<learn.bob.com.androidlearn.audioWave.EndLineView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/line_end"
+    android:layout_width="20dp"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="9dp"
+        android:background="@color/green_7ED321"/>
+
+    <View
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_green_conner"/>
+</learn.bob.com.androidlearn.audioWave.EndLineView>
