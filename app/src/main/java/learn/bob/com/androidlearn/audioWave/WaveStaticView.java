@@ -66,7 +66,7 @@ public class WaveStaticView extends View {
         int length = mValues.size();
         float clearNum = length - MAX;//共需清除的个数
         int temp = Math.round(length / clearNum);//从多少个数中清除一个
-
+        temp = temp == 1 ? 2 : temp;
         ArrayList<Integer> newValues = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             if (i % temp != 0) {

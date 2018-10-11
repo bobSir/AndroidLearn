@@ -16,7 +16,7 @@ public class AudioWaveActivity extends AppCompatActivity {
     private WaveGroupView mWaveGroupView;
 
     private Handler mHandler = new Handler();
-    private int j = 140;
+    private int j = 4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
