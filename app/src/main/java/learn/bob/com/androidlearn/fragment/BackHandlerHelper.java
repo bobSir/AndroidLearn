@@ -10,6 +10,7 @@ import java.util.List;
  * Create by cly on 18/10/11
  */
 public class BackHandlerHelper {
+    private static int resId;
 
     /**
      * 将back事件分发给 FragmentManager 中管理的子Fragment，如果该 FragmentManager 中的所有Fragment都
@@ -48,11 +49,12 @@ public class BackHandlerHelper {
                 && ((FragmentBackHandler) child).onBackPressed(currentFragment);
     }
 
-    public static boolean handleBackPress(Fragment fragment, int id) {
-        return handleBackPress(fragment.getChildFragmentManager(), id);
+    public static boolean handleBackPress(Fragment fragment) {
+        return handleBackPress(fragment.getChildFragmentManager(), resId);
     }
 
     public static boolean handleBackPress(FragmentActivity fragmentActivity, int id) {
+        resId = id;
         return handleBackPress(fragmentActivity.getSupportFragmentManager(), id);
     }
 }
