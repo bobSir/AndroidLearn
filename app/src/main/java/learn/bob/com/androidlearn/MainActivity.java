@@ -7,6 +7,7 @@ import android.view.View;
 
 import learn.bob.com.androidlearn.aop.AOPDoubleClickActivity;
 import learn.bob.com.androidlearn.audioWave.AudioWaveActivity;
+import learn.bob.com.androidlearn.fragment.FragmentLearnActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,5 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void audioWave(View view) {
         startActivity(new Intent(this, AudioWaveActivity.class));
+    }
+
+    public void fragmentTest(View view) {
+        startActivity(new Intent(this, FragmentLearnActivity.class));
     }
 }

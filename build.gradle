@@ -22,6 +22,9 @@ allprojects {
         google()
         jcenter()
     }
+    ext {
+        logger = "com.orhanobut:logger:2.2.0"
+    }
 }
 
 task clean(type: Delete) {

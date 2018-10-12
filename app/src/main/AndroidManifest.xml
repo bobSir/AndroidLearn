@@ -27,6 +27,8 @@
             android:name=".audioWave.AudioWaveActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".fragment.FragmentLearnActivity">
+        </activity>
     </application>
 
 </manifest>
