@@ -4,8 +4,10 @@
 - [WPopup - 一个简单使用并且高度定制的Popupwindow](http://www.wanandroid.com/blog/show/23401)
 - [Android优雅地处理按钮重复点击 AOP](https://www.jianshu.com/p/7b35eb8d0d3)
 
-# 工具    
-<studio 插件> translation AndroidSourceViewer
+# 工具
+### studio 插件 
+- translation(翻译插件) 
+- AndroidSourceViewer(跳转查看API)
 
 # 日常笔记
 ## audioWave 音波View
