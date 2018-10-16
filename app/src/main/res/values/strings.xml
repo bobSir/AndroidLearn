@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidLearn</string>
+
+    <string name="android_learn">Android学习 \n onSaveInstanceSate \n onRestoreInstanceState</string>
 </resources>

@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".fragment.FragmentLearnActivity">
         </activity>
+        <activity android:name=".activity.ActivityLearn">
+        </activity>
     </application>
 
 </manifest>

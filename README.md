@@ -1,5 +1,12 @@
 #Android学习与实践
 
+##文章
+    ﻿[WPopup - 一个简单使用并且高度定制的Popupwindow](http://www.wanandroid.com/blog/show/23401)
+    [Android优雅地处理按钮重复点击 AOP](https://www.jianshu.com/p/7b35eb8d0d3)
+
+##工具    
+    <studio 插件> translation AndroidSourceViewer
+
     自定义View属性声明获取，如果要把自定义View绘制在指定坐标，当前view画布要包含这个坐标，
     不然在onDraw指定坐标绘画没有效果。可以在父布局中自己布局实现具体位置。
     
