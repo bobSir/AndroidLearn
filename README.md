@@ -34,3 +34,7 @@ viewPager-fragments方式，获取的currentFragment并不是当前Fragment，�
 - transcation.addToBackStack(String) 添加一个Fragment事务回退栈
 - Fragment处理Fragment的事情，activity相当于Fragment的总线，可以通过回调的方式由Activity管理各个Fragment的创建。
 - 参考[郭霖 Fragment解析](https://blog.csdn.net/lmj623565791/article/details/37992017)
+
+## Fragment优化 懒加载
+- 只加载当前滑至页面，取消FragmentViewPager destroyItem(),防止因为回收滑回来时再加载。优点：体验好 缺点：内存高。当
+快速滑动时在onFragmentHind()回调中取消网络请求。

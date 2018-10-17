@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="learn.bob.com.androidlearn.MainActivity">
+    android:orientation="vertical">
 
     <Button
         android:layout_width="match_parent"
@@ -19,9 +18,16 @@
         android:layout_height="wrap_content"
         android:onClick="audioWave"
         android:text="AudioWave"/>
+
     <Button
-        android:onClick="fragmentTest"
-        android:text="Fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="fragmentTest"
+        android:text="Fragment onBackPress"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="fragmentLazy"
+        android:text="Fragment 懒加载"/>
 </LinearLayout>

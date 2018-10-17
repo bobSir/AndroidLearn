@@ -3,7 +3,7 @@
           package="learn.bob.com.androidlearn">
 
     <application
-        android:name=".MyApplication"
+        android:name="bobLearn.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="bobLearn.HomeMainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -20,16 +20,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".aop.AOPDoubleClickActivity"
+            android:name="bobLearn.aop.AOPDoubleClickActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".audioWave.AudioWaveActivity"
+            android:name="bobLearn.audioWave.AudioWaveActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name="bobLearn.fragment.FragmentLearnActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".fragment.FragmentLearnActivity">
+        <activity
+            android:name="bobLearn.activityBase.BaseLearnActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.ActivityLearn">
+        <activity
+            android:name="bobLearn.viewpagerOptimization.FragmentVpActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
