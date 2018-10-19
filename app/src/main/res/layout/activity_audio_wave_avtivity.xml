@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <bobLearn.audioWave.WaveView
+    <com.bobLearn.audioWave.WaveView
         android:id="@+id/wv"
         android:layout_width="match_parent"
         android:layout_height="120dp"

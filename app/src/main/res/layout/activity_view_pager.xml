@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <bobLearn.viewpagerOptimization.indicator.MagicIndicator
+    <com.bobLearn.viewpagerOptimization.indicator.MagicIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="42dp"
