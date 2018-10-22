@@ -22,7 +22,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="fragmentTest"
+        android:onClick="fragmentBack"
         android:text="Fragment onBackPress"/>
 
     <Button
@@ -30,4 +30,10 @@
         android:layout_height="wrap_content"
         android:onClick="fragmentLazy"
         android:text="Fragment 懒加载"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="fragmentBasis"
+        android:text="fragment Basis"/>
 </LinearLayout>

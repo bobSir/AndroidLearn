@@ -39,6 +39,10 @@
             android:name=".viewpagerOptimization.FragmentVpActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".fragment.fragmentBase.BasisFragmentActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

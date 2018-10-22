@@ -8,7 +8,9 @@ import android.view.View;
 import com.bobLearn.aop.AOPDoubleClickActivity;
 import com.bobLearn.audioWave.AudioWaveActivity;
 import com.bobLearn.fragment.backPress.FragmentBackActivity;
+import com.bobLearn.fragment.fragmentBase.BasisFragmentActivity;
 import com.bobLearn.viewpagerOptimization.FragmentVpActivity;
+import com.orhanobut.logger.Logger;
 
 public class HomeMainActivity extends AppCompatActivity {
 
@@ -16,6 +18,13 @@ public class HomeMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onPause() {
+        Logger.d("[Main ac] onPause Begin");
+        super.onPause();
+        Logger.d("[Main ac] onPause End");
     }
 
     public void aopDoubleClick(View view) {
@@ -26,11 +35,15 @@ public class HomeMainActivity extends AppCompatActivity {
         startActivity(new Intent(this, AudioWaveActivity.class));
     }
 
-    public void fragmentTest(View view) {
+    public void fragmentBack(View view) {
         startActivity(new Intent(this, FragmentBackActivity.class));
     }
 
     public void fragmentLazy(View view) {
         startActivity(new Intent(this, FragmentVpActivity.class));
+    }
+
+    public void fragmentBasis(View view) {
+        startActivity(new Intent(this, BasisFragmentActivity.class));
     }
 }
