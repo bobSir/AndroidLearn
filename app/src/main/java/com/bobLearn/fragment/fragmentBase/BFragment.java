@@ -92,6 +92,24 @@ public class BFragment extends Fragment {
         Logger.d("BF [onStop] END");
     }
 
+    @Override
+    public void onDestroyView() {
+        Logger.d("BF [onDestroyView] BEGIN");
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        Logger.d("BF [onDestroy] BEGIN");
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        Logger.d("BF [onDetach] BEGIN");
+        super.onDetach();
+    }
+
     public interface OnBFEventListener {
         void onShowAClick();
 

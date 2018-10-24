@@ -8,9 +8,9 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import java.util.ArrayList;
-
 import com.bobLearn.util.DensityUtil;
+
+import java.util.ArrayList;
 
 
 /**

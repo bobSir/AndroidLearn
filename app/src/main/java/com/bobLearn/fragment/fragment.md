@@ -14,7 +14,7 @@ support是不断更新的，建议使用support库中的Fragment。使用support
 - FragmentManager: 管理和维护Fragment，他是抽象类，具体实现类是FragmentManagerImpl。
 - FragmentTransaction: 对Fragment的添加，删除等操作都需要通过事务方式进行，他是抽象类，具体实现类是BackStackRecord。
 ### 创建Fragment
-- 继承Fragment onCreateView() 返回View。inflater.inflate(id,container,false).
+- 继承Fragment onCreateView() 返回View.inflater.inflate(id,container,false).
 - 传入参数，通过setArguments(Bundle bundle) 
 - getActivity(), 建议再onAttach()将context强转为Activity。
 ### 添加
@@ -49,7 +49,7 @@ getActivity.onBackPressed()
 - 看代码
 - Fragment的onAttach()->onCreate()->onCreateView()->onActivityCreated()->onStart()都是在Activity的onStart()
 中调用的。
-- AFragment启BFragment addToBackStack() replace()  add()区别
+- AFragment启BFragment addToBackStack() replace() add()区别
 - 看代码
 
 - FragmentTransaction 基本方法
@@ -58,7 +58,7 @@ getActivity.onBackPressed()
 - hide(): 同上
 - add()
 - remove()
-- replace()：旧的Fragment调用add() 新的Fragment调用add()
+- replace()：旧的Fragment调用remove() 新的Fragment调用add()
 - addToBackStack: 添加回退栈
 
 ## Fragment实现原理 Back Stack
@@ -69,7 +69,7 @@ getActivity.onBackPressed()
 - popBackStack(): 将回退栈的栈顶弹出，并回退该事务.
 - popBackStack(String name,int flag): name->tag flag可以为0或者FragmentManager.POP_BACK_STACK_INCLUSIVE，0
 表示之弹出该元素以上的所有的元素，POP_BACK_STACK_INCLUSIVE表示弹出包含该元素以上的所有元素。
--看代码
+- 看代码
 
 
 
