@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.bobLearn.activityBase.BaseLearnActivity;
 import com.bobLearn.aop.AOPDoubleClickActivity;
 import com.bobLearn.audioWave.AudioWaveActivity;
 import com.bobLearn.fragment.backPress.FragmentBackActivity;
@@ -25,6 +26,10 @@ public class HomeMainActivity extends AppCompatActivity {
         Logger.d("[Main ac] onPause Begin");
         super.onPause();
         Logger.d("[Main ac] onPause End");
+    }
+
+    public void activityClick(View view) {
+        startActivity(new Intent(this, BaseLearnActivity.class));
     }
 
     public void aopDoubleClick(View view) {

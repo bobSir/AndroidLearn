@@ -10,6 +10,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="activityClick"
+        android:text="activity basis"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="aopDoubleClick"
         android:text="AOP实现防双击"/>
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.bobLearn.R;
+import com.orhanobut.logger.Logger;
 
 
 public class BaseLearnActivity extends AppCompatActivity {
@@ -30,12 +31,14 @@ public class BaseLearnActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         //Activity正在停止，可做数据存储 停止动画等操作
+        Logger.d("onPause");
         super.onPause();
     }
 
     @Override
     protected void onStop() {
         //Activity即将停止 可做稍微重量级回收工作，取消网络连接 注销广播接收器等
+        Logger.d("onStop");
         super.onStop();
     }
 
