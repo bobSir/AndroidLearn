@@ -28,6 +28,12 @@ public class HomeMainActivity extends AppCompatActivity {
         Logger.d("[Main ac] onPause End");
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Logger.d("[Main ac] onDestroy");
+    }
+
     public void activityClick(View view) {
         startActivity(new Intent(this, BaseLearnActivity.class));
     }
