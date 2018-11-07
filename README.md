@@ -4,6 +4,9 @@
 - [WPopup - 一个简单使用并且高度定制的Popupwindow](http://www.wanandroid.com/blog/show/2340)
 - [Android优雅地处理按钮重复点击 AOP](https://www.jianshu.com/p/7b35eb8d0d3)
 - [Android常用优秀开源框架](https://github.com/Ericsongyl/AOSF)
+- [Android Jetpack组件](https://blog.csdn.net/Alexwll/article/details/83302173)
+- [BRVAH 强大的RecyclerAdapter框架](https://www.jianshu.com/p/b343fcff51b0)
+
 
 # 工具
 ### studio 插件 
