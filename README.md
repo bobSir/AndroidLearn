@@ -9,14 +9,18 @@
 
 
 # 工具
-### studio 插件 
+## studio 插件 
 - translation(翻译插件) 
 - AndroidSourceViewer(跳转查看API)
+
+## 文章
+- [Mac下用Charles实现Android http/https抓包](https://blog.csdn.net/luochoudan/article/details/72801573)
 
 # 日常笔记
 ## audioWave 音波View
 自定义View属性声明获取，如果要把自定义View绘制在指定坐标，当前view画布要包含这个坐标，
 不然在onDraw指定坐标绘画没有效果。可以在父布局中自己布局实现具体位置。
+
 ## fragment实现onBackPress
 fragment onBackPress activity onbackPress分发到Fragment
 实测fragment onBackPress实现策略，实测下来效果不理想
@@ -42,3 +46,9 @@ viewPager-fragments方式，获取的currentFragment并不是当前Fragment，�
 ## Fragment优化 懒加载
 - 只加载当前滑至页面，取消FragmentViewPager destroyItem(),防止因为回收滑回来时再加载。优点：体验好 缺点：内存高。当
 快速滑动时在onFragmentHind()回调中取消网络请求。
+
+## Fragment详解
+- 详见 com/bobLearn/fragment/fragment.md
+
+## RecyclerView详解
+- 详见 com/bobLearn/recyclerView/recyclerView.md
