@@ -25,6 +25,7 @@ allprojects {
     ext {
         logger = "com.orhanobut:logger:2.2.0"
         aspectjrt = "org.aspectj:aspectjrt:1.8.9"
+        danmu = "com.github.ctiao:DanmakuFlameMaster:0.9.25"
     }
 }
 

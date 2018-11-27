@@ -6,7 +6,8 @@
 - [Android常用优秀开源框架](https://github.com/Ericsongyl/AOSF)
 - [Android Jetpack组件](https://blog.csdn.net/Alexwll/article/details/83302173)
 - [BRVAH 强大的RecyclerAdapter框架](https://www.jianshu.com/p/b343fcff51b0)
-
+- [Android Jetpack架构篇：带视图的Android Room](https://blog.csdn.net/itismelzp/article/details/83546204)
+- [Android 搭架构+做模板](https://www.jianshu.com/p/77dd326f21dc)
 
 # 工具
 ## studio 插件 

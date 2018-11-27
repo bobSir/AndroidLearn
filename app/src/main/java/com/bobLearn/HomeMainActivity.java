@@ -8,6 +8,7 @@ import android.view.View;
 import com.bobLearn.activityBase.BaseLearnActivity;
 import com.bobLearn.aop.AOPDoubleClickActivity;
 import com.bobLearn.audioWave.AudioWaveActivity;
+import com.bobLearn.danmu.DanmuTestActivity;
 import com.bobLearn.fragment.backPress.FragmentBackActivity;
 import com.bobLearn.fragment.fragmentBase.BasisFragmentActivity;
 import com.bobLearn.viewpagerOptimization.FragmentVpActivity;
@@ -56,5 +57,9 @@ public class HomeMainActivity extends AppCompatActivity {
 
     public void fragmentBasis(View view) {
         startActivity(new Intent(this, BasisFragmentActivity.class));
+    }
+
+    public void danmu(View view) {
+        startActivity(new Intent(this, DanmuTestActivity.class));
     }
 }

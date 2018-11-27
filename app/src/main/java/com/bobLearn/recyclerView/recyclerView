@@ -1,0 +1,19 @@
+# RecyclerView
+
+## RecyclerView.LayoutManager 
+- 负责Item视图的布局的显示管理
+
+## RecyclerView.ItemDecoration
+- 给每一项Item视图添加修饰的View
+
+## RecyclerView.Adapter
+- 为每一项Item创建视图
+
+## RecyclerView.ViewHolder
+- 承载Item视图的子布局
+
+## RecyclerView.ItemAnimator 
+- 负责处理数据添加或者删除时候的动画效果
+
+## RecyclerView.Cache
+- 缓存策略 Recycler/RecycledViewPool/ViewCacheExtension
