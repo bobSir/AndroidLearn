@@ -33,7 +33,7 @@ getSupportFragmentManager().findFragmentById(R.id.container)
 - addBackStack() FragmentManager添加回退栈。事务添加到回退栈，点击返回，回滚Fragment事务(如果事务是add()，那么回退操作就是remove())
 getActivity.onBackPressed()
 ## 生命周期
-![fragment生命周期](http://odsdowehg.bkt.clouddn.com/fragment_lifecycle.png)
+![fragment生命周期](http://img.my.csdn.net/uploads/201211/29/1354170699_6619.png)
 - onAttach()：Fragment和Activity相关联时调用。可以通过该方法获取Activity引用，还可以通过getArguments()获取参数。
 - onCreate()：Fragment被创建时调用。
 - onCreateView()：创建Fragment的布局。
