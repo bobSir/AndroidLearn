@@ -71,10 +71,7 @@ getActivity.onBackPressed()
 表示之弹出该元素以上的所有的元素，POP_BACK_STACK_INCLUSIVE表示弹出包含该元素以上的所有元素。
 - 看代码
 
-
-
-
-
+- [fragment-bugly](https://mp.weixin.qq.com/s/dUuGSVhWinAnN9uMiBaXgw)
 
 
 
