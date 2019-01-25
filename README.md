@@ -8,6 +8,7 @@
 - [BRVAH 强大的RecyclerAdapter框架](https://www.jianshu.com/p/b343fcff51b0)
 - [Android Jetpack架构篇：带视图的Android Room](https://blog.csdn.net/itismelzp/article/details/83546204)
 - [Android 搭架构+做模板](https://www.jianshu.com/p/77dd326f21dc)
+- [用户行为统计架构](https://juejin.im/post/5c3956fe6fb9a049fa0ffb70)
 
 # 工具
 ## studio 插件 
