@@ -11,6 +11,7 @@ import com.bobLearn.audioWave.AudioWaveActivity;
 import com.bobLearn.danmu.DanmuTestActivity;
 import com.bobLearn.fragment.backPress.FragmentBackActivity;
 import com.bobLearn.fragment.fragmentBase.BasisFragmentActivity;
+import com.bobLearn.threadpool.ThreadPoolActivity;
 import com.bobLearn.viewpagerOptimization.FragmentVpActivity;
 import com.orhanobut.logger.Logger;
 
@@ -61,5 +62,9 @@ public class HomeMainActivity extends AppCompatActivity {
 
     public void danmu(View view) {
         startActivity(new Intent(this, DanmuTestActivity.class));
+    }
+
+    public void threadPool(View view) {
+        startActivity(new Intent(this, ThreadPoolActivity.class));
     }
 }

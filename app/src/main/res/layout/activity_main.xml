@@ -49,4 +49,10 @@
         android:onClick="danmu"
         android:text="DANMU"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="threadPool"
+        android:text="TheadPool"/>
+
 </LinearLayout>
