@@ -59,7 +59,7 @@ public class FundWXThreadRunner implements Callback, IThreadRunner {
             public Thread newThread(Runnable paramRunnable) {
                 Thread thread = new Thread(paramRunnable);
                 thread.setName("ALMThread-" + mCount.getAndIncrement());
-                Logger.d("@thread", "paramRunnable hashCode = " + paramRunnable.hashCode());
+                Logger.d("paramRunnable hashCode = " + paramRunnable.hashCode());
                 return thread;
             }
 

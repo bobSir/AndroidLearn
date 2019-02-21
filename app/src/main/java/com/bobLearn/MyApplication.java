@@ -20,8 +20,8 @@ public class MyApplication extends Application {
 
     private void initLogger() {
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
-                .showThreadInfo(false)
-                .methodCount(0)
+                .showThreadInfo(true)
+                .methodCount(2)
                 .tag("@cly")
                 .build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
