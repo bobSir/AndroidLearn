@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".service.ServiceActivity">
+
+    <Button
+        android:id="@+id/btn_s1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="s1"
+        android:text="startService" />
+
+    <Button
+        android:id="@+id/btn_s2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="s2"
+        android:text="BindService"
+        app:layout_constraintTop_toBottomOf="@+id/btn_s1" />
+
+</android.support.constraint.ConstraintLayout>

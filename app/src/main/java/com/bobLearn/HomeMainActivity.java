@@ -13,6 +13,10 @@ import com.bobLearn.fragment.backPress.FragmentBackActivity;
 import com.bobLearn.fragment.fragmentBase.BasisFragmentActivity;
 import com.bobLearn.threadpool.ThreadPoolActivity;
 import com.bobLearn.viewpagerOptimization.FragmentVpActivity;
+import com.bobLearn.x5.BrowserActivity;
+import com.bobLearn.x5.FilechooserActivity;
+import com.bobLearn.x5.FullScreenActivity;
+import com.bobLearn.x5.X5TestActivity;
 import com.orhanobut.logger.Logger;
 
 public class HomeMainActivity extends AppCompatActivity {
@@ -66,5 +70,21 @@ public class HomeMainActivity extends AppCompatActivity {
 
     public void threadPool(View view) {
         startActivity(new Intent(this, ThreadPoolActivity.class));
+    }
+
+    public void xFive(View view) {
+        startActivity(new Intent(this, BrowserActivity.class));
+    }
+
+    public void fileChooser(View view) {
+        startActivity(new Intent(this, FilechooserActivity.class));
+    }
+
+    public void fullScreen(View view) {
+        startActivity(new Intent(this, FullScreenActivity.class));
+    }
+
+    public void x5Test(View view) {
+        startActivity(new Intent(this, X5TestActivity.class));
     }
 }

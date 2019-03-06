@@ -27,13 +27,13 @@ public class ThreadPoolActivity extends AppCompatActivity {
             }
         };
         Logger.d("runnable hashCode = " + runnable.hashCode());
-//        FundWXThreadFactory.newThread().start(runnable);
-//        FundWXThreadFactory.newThread(FundWXThreadPriority.IMMEDIATE).start(new Runnable() {
-//            @Override
-//            public void run() {
-//                Logger.d("thread immediate");
-//            }
-//        });
+        FundWXThreadFactory.newThread().start(runnable);
+        FundWXThreadFactory.newThread(FundWXThreadPriority.IMMEDIATE).start(new Runnable() {
+            @Override
+            public void run() {
+                Logger.d("thread immediate");
+            }
+        });
 
         FundWXThreadFactory.newThread(FundWXThreadPriority.IMMEDIATE).start(
                 new Callable<String>() {
