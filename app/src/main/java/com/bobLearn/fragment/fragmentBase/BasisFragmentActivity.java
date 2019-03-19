@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.bobLearn.R;
 import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
+
 public class BasisFragmentActivity extends AppCompatActivity {
     private AFragment mAFragment;
     private BFragment mBFragment;

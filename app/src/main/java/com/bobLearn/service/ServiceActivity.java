@@ -11,6 +11,8 @@ import android.view.View;
 
 import com.bobLearn.R;
 
+import java.util.HashMap;
+
 public class ServiceActivity extends AppCompatActivity {
     private ServiceOne.MyBinder mBinder;
     private ServiceConnection mConnection = new ServiceConnection() {
