@@ -82,5 +82,16 @@
             android:onClick="x5Test"
             android:text="X5_Test" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="moveTask"
+            android:text="move_Task" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="orm"
+            android:text="Green Dao" />
     </LinearLayout>
 </ScrollView>

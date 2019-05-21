@@ -3,6 +3,7 @@ package com.bobLearn;
 import android.app.Application;
 import android.util.Log;
 
+import com.bobLearn.orm.GreenDaoApi;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
@@ -19,6 +20,8 @@ public class MyApplication extends Application {
         ContextUtil.init(this);
         initLogger();
         initX5();
+
+        new GreenDaoApi().setUpDataBase(getApplicationContext());
     }
 
     private void initX5() {
@@ -38,7 +41,7 @@ public class MyApplication extends Application {
             }
         };
         //x5内核初始化接口
-        QbSdk.initX5Environment(getApplicationContext(),  cb);
+        QbSdk.initX5Environment(getApplicationContext(), cb);
     }
 
     private void initLogger() {

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bobLearn.R;
+import com.orhanobut.logger.Logger;
 
 /**
  * Create by cly on 18/10/22
@@ -33,6 +34,13 @@ public class CFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        Logger.d("CF [onResume] BEGIN");
+        super.onResume();
+        Logger.d("CF [onResume] END");
     }
 
     public interface OnCFEventClickListener {

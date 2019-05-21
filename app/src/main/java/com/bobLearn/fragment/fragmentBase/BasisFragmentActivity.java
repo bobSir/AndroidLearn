@@ -2,11 +2,14 @@ package com.bobLearn.fragment.fragmentBase;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.bobLearn.R;
+import com.bobLearn.audioWave.AudioWaveActivity;
+import com.bobLearn.fragment.backPress.FragmentBackActivity;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -44,12 +47,12 @@ public class BasisFragmentActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 //                if (mBFragment.isAdded()) {
 //                    fragmentTransaction.hide(mAFragment)
-//                            .show(mBFragment)
+//                            .show(mBFragment)f
 //                            .commit();
 //                } else {
                 fragmentTransaction
                         .addToBackStack(BFragment.TAG)
-                        .replace(R.id.container, mBFragment, BFragment.TAG)
+                        .add(R.id.container, mBFragment, BFragment.TAG)
 //                        .hide(mAFragment)
                         .commit();
             }
@@ -74,7 +77,7 @@ public class BasisFragmentActivity extends AppCompatActivity {
                     initCFragment();
                     getSupportFragmentManager().beginTransaction()
                             .addToBackStack(CFragment.TAG)
-                            .replace(R.id.container, mCFragment)
+                            .add(R.id.container, mCFragment)
                             .commit();
                 }
             });
@@ -87,7 +90,8 @@ public class BasisFragmentActivity extends AppCompatActivity {
             mCFragment.setOnCFEventClickListener(new CFragment.OnCFEventClickListener() {
                 @Override
                 public void onCEventClick() {
-                    getSupportFragmentManager().popBackStack(BFragment.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    startActivity(new Intent(BasisFragmentActivity.this, AudioWaveActivity.class));
+//                    getSupportFragmentManager().popBackStack(BFragment.TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 }
             });
         }
@@ -112,5 +116,12 @@ public class BasisFragmentActivity extends AppCompatActivity {
         Logger.d("activity [onPause] begin");
         super.onPause();
         Logger.d("activity [onPause] end");
+    }
+
+    @Override
+    protected void onStop() {
+        Logger.d("activity [onStop] begin");
+        super.onStop();
+        Logger.d("activity [onStop] end");
     }
 }

@@ -11,6 +11,8 @@ import com.bobLearn.audioWave.AudioWaveActivity;
 import com.bobLearn.danmu.DanmuTestActivity;
 import com.bobLearn.fragment.backPress.FragmentBackActivity;
 import com.bobLearn.fragment.fragmentBase.BasisFragmentActivity;
+import com.bobLearn.orm.OrmActivity;
+import com.bobLearn.task.TaskTestActivity;
 import com.bobLearn.threadpool.ThreadPoolActivity;
 import com.bobLearn.viewpagerOptimization.FragmentVpActivity;
 import com.bobLearn.x5.BrowserActivity;
@@ -86,5 +88,15 @@ public class HomeMainActivity extends AppCompatActivity {
 
     public void x5Test(View view) {
         startActivity(new Intent(this, X5TestActivity.class));
+    }
+
+    public void moveTask(View view) {
+        Intent intent = new Intent(this, TaskTestActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
+    }
+
+    public void orm(View view) {
+        startActivity(new Intent(this, OrmActivity.class));
     }
 }
