@@ -3,6 +3,7 @@ package com.bobLearn;
 import android.app.Application;
 import android.util.Log;
 
+import com.bobLearn.backlayout.QMUISwipeBackActivityManager;
 import com.bobLearn.orm.GreenDaoApi;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -22,6 +23,8 @@ public class MyApplication extends Application {
         initX5();
 
         new GreenDaoApi().setUpDataBase(getApplicationContext());
+
+        QMUISwipeBackActivityManager.init(this);
     }
 
     private void initX5() {

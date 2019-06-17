@@ -1,5 +1,6 @@
 package com.bobLearn.viewpagerOptimization.indicator;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -15,6 +16,7 @@ import com.bobLearn.util.DensityUtil;
  * 博客: http://hackware.lucode.net
  * Created by hackware on 2016/6/26.
  */
+@SuppressLint("AppCompatCustomView")
 public class SimplePagerTitleView extends TextView implements IMeasurablePagerTitleView {
     protected int mSelectedColor;
     protected int mNormalColor;

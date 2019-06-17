@@ -13,6 +13,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="backFragment"
+            android:text="BACK FRAGMENT" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="activityClick"
             android:text="activity basis" />
 

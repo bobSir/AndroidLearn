@@ -8,6 +8,7 @@ import android.view.View;
 import com.bobLearn.activityBase.BaseLearnActivity;
 import com.bobLearn.aop.AOPDoubleClickActivity;
 import com.bobLearn.audioWave.AudioWaveActivity;
+import com.bobLearn.backFragment.BackBackTestOneActivity;
 import com.bobLearn.danmu.DanmuTestActivity;
 import com.bobLearn.fragment.backPress.FragmentBackActivity;
 import com.bobLearn.fragment.fragmentBase.BasisFragmentActivity;
@@ -98,5 +99,9 @@ public class HomeMainActivity extends AppCompatActivity {
 
     public void orm(View view) {
         startActivity(new Intent(this, OrmActivity.class));
+    }
+
+    public void backFragment(View view) {
+        startActivity(new Intent(this, BackBackTestOneActivity.class));
     }
 }

@@ -8,4 +8,29 @@
     <color name="green_7ED321">#7ED321</color>
     <color name="blue_0096FF">#0096FF</color>
     <color name="blackalpha50">#80000000</color>
+
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_60">#99FFFFFF</color>
+    <color name="black_1E">#1E1F20</color>
+    <color name="gold_F2">#F2BB61</color>
+    <color name="black_22">#222222</color>
+    <color name="gray_BB">#BBBBBB</color>
+    <color name="gray_DD">#DDDDDD</color>
+    <color name="gray_F2">#F2F2F2</color>
+    <color name="gray_F3">#F3F3F3</color>
+    <color name="gray_88">#888888</color>
+    <color name="gray_EE">#EEEEEE</color>
+    <color name="red_FF5">#FF5E5E</color>
+    <color name="black_66">#66000000</color>
+    <color name="gold_E0">#E0B060</color>
+    <color name="gold_E2">#E2AC55</color>
+    <color name="gray_E9">#E9E9E9</color>
+    <color name="origin_FF7">#FF7070</color>
+    <color name="divider">#F3F3F3</color>
+    <color name="gold_F6">#F6AB29</color>
+    <color name="gray_38">#383838</color>
+    <color name="blue_64">#649FF6</color>
+    <color name="pink_FB">#FB99C0</color>
 </resources>
