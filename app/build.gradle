@@ -49,4 +49,8 @@ dependencies {
     implementation parent.ext.danmu
     implementation files('libs/tbs_sdk_thirdapp_v4.3.0.1020_43633_sharewithdownload_withoutGame_obfs_20190111_105200.jar')
     implementation 'org.greenrobot:greendao:3.2.2'
+
+    implementation 'com.qmuiteam:qmui:1.2.0'
+
+    implementation project(path: ':gson')
 }

@@ -13,6 +13,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="jsonTest"
+            android:text="JSON TEST" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="backFragment"
             android:text="BACK FRAGMENT" />
 
@@ -99,5 +105,11 @@
             android:layout_height="wrap_content"
             android:onClick="orm"
             android:text="Green Dao" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="qmui"
+            android:text="QMUI" />
     </LinearLayout>
 </ScrollView>
